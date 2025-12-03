@@ -7,6 +7,7 @@ import rsa
 import requests
 import os
 import sys
+import random
 from datetime import datetime
 from typing import List, Dict, Optional, Tuple
 from dotenv import load_dotenv
@@ -252,9 +253,8 @@ class TianYiCloudBot:
 
         # 抽奖
         for i, draw_url in enumerate(Config.DRAW_URLS, 1):
-            if i > 1:  # 第一次抽奖后等待5秒
-                time.sleep(5)
-
+            wait_time = random.randint(2,5)
+            time.sleep(wait_time)
             draw_success, draw_msg = self.draw_prize(i, draw_url)
             results['draws'].append(draw_msg)
 
